@@ -16,6 +16,8 @@ class List
         void swap(int n, int m);
         void sort();
         void show();
+    protected:
+
     private:
         Discipline **list;
         int size;
