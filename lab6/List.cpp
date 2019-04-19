@@ -17,6 +17,53 @@ List::~List()
 	delete [] list;
 }
 
+void List::operator += (Discipline *discipline)
+{
+    addToList(discipline);
+}
+
+void List::operator += (Discipline &discipline)
+{
+    Discipline *temp;
+    temp = new Discipline(discipline);
+    addToList(temp);
+}
+
+void List::operator -= (int index)
+{
+    removeFromList(index);
+}
+
+void List::operator -= (char *name)
+{
+    for (int i = 0; i < size - 1; i++)
+        if (strcmp(list[i]->getName(), name) == 0) {
+            removeFromList(i);
+            i--;
+        }
+}
+
+Discipline *List::operator [] (int index)
+{
+    return getObject(index);
+}
+
+Discipline *List::operator [] (char *name)
+{
+    for (int i = 0; i < size - 1; i++)
+        if (strcmp(list[i]->getName(), name) == 0)
+            return getObject(i);
+    return 0;
+}
+
+int List::find(char *name)
+{
+    for (int i = 0; i < size; i++)
+        if (strcmp(list[i]->getName(), name) == 0)
+            return i;
+    return -1;
+}
+
 void List::addToList(Discipline *discipline)
 {
     if (size == maxSize) {
