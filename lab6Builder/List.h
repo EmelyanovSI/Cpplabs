@@ -11,7 +11,6 @@ class List
 
         List &operator += (Discipline *discipline);
         List &operator += (Discipline &discipline);
-        List &operator -= (int index);
         List &operator -= (char *name);
         Discipline *operator [] (int index);
         Discipline *operator [] (char *name);
@@ -25,6 +24,9 @@ class List
         void show();
 
         int find(char *name);
+
+        friend List &operator -= (List &l, int index);
+        void operator += (List &list);
     protected:
 
     private:

@@ -5,16 +5,16 @@
 List::List()
 {
     size = 0;
-	maxSize = 2;
-	list = new Discipline *[maxSize];
+    maxSize = 2;
+    list = new Discipline *[maxSize];
 }
 
 List::~List()
 {
     for (int i = 0; i < size; i++) {
-		delete list[i];
-	}
-	delete [] list;
+        delete list[i];
+    }
+    delete [] list;
 }
 
 List &List::operator += (Discipline *discipline)
@@ -29,10 +29,10 @@ List &List::operator += (Discipline &discipline)
     return *this;
 }
 
-List &List::operator -= (int index)
+List &operator -= (List &l, int index)
 {
-    removeFromList(index);
-    return *this;
+    l.removeFromList(index);
+    return l;
 }
 
 List &List::operator -= (char *name)
@@ -54,8 +54,15 @@ Discipline *List::operator [] (char *name)
 {
     for (int i = 0; i < size; i++)
         if (strcmp(list[i]->getName(), name) == 0)
-            return getObject(i);
+            return (*this)[i];
     return NULL;
+}
+
+void List::operator += (List &list)
+{
+    int size = list.getLength();
+    for (int i = 0; i < size; i++)
+        *this += *list.getObject(i);
 }
 
 int List::find(char *name)

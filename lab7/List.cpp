@@ -29,10 +29,10 @@ List &List::operator += (Discipline &discipline)
     return *this;
 }
 
-List &List::operator -= (int index)
+List &operator -= (List &l, int index)
 {
-    removeFromList(index);
-    return *this;
+    l.removeFromList(index);
+    return l;
 }
 
 List &List::operator -= (char *name)
@@ -54,8 +54,15 @@ Discipline *List::operator [] (char *name)
 {
     for (int i = 0; i < size; i++)
         if (strcmp(list[i]->getName(), name) == 0)
-            return getObject(i);
+            return (*this)[i];
     return NULL;
+}
+
+void List::operator += (List &list)
+{
+    int size = list.getLength();
+    for (int i = 0; i < size; i++)
+        *this += *list.getObject(i);
 }
 
 int List::find(char *name)
@@ -110,9 +117,10 @@ void List::swap(int n, int m)
 void List::sort()
 {
     for (int i = 0; i < size - 1; i++)
-		for (int j = i; j < size; j++)
-			if (strcmp(list[i]->getName(), list[j]->getName()) < 0)
-				swap(i, j);
+		for (int j = i; j < size; j++) {
+            if (strcmp(list[i]->getName(), list[j]->getName()) < 0)
+                swap(i, j);
+		}
 }
 
 void List::show()
