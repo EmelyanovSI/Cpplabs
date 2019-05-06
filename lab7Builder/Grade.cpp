@@ -57,16 +57,14 @@ char *Grade::getKey()
     return keyWord;
 }
 
-Grade *Grade::save(FILE *file)
+void Grade::save(FILE *file)
 {
     Discipline::save(file);
-	fprintf(file, "%s %d ", student, value);
-	return this;
+    fprintf(file, "%s %d ", student, value);
 }
 
-Grade *Grade::load(FILE *file)
+void Grade::load(FILE *file)
 {
     Discipline::load(file);
     fscanf(file, "%s %d ", student, &value);
-    return this;
 }

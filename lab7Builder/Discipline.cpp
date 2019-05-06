@@ -115,14 +115,12 @@ char *Discipline::getKey()
     return keyWord;
 }
 
-Discipline *Discipline::save(FILE *file)
+void Discipline::save(FILE *file)
 {
-	fprintf(file, "%s %d %d ", name, hours, course);
-	return this;
+    fprintf(file, "%s %d %d ", name, hours, course);
 }
 
-Discipline *Discipline::load(FILE *file)
+void Discipline::load(FILE *file)
 {
     fscanf(file, "%s %d %d ", name, &hours, &course);
-    return this;
 }

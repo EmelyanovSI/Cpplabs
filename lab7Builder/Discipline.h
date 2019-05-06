@@ -24,8 +24,8 @@ class Discipline
         virtual char *getKey();
         virtual void input();
         virtual void output();
-        virtual Discipline *save(FILE *file);
-        virtual Discipline *load(FILE *file);
+        virtual void save(FILE *file);
+        void load(FILE *file);
 
     protected:
         char keyWord[STR_LEN*2];

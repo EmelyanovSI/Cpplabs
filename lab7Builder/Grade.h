@@ -17,8 +17,8 @@ class Grade: public Discipline
         char *getKey();
         void input();
         void output();
-        Grade *save(FILE *file);
-        Grade *load(FILE *file);
+        void save(FILE *file);
+        void load(FILE *file);
 
     protected:
 
