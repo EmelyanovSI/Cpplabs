@@ -145,11 +145,12 @@ void List::save(char *filename)
 {
     FILE *file;
     file = fopen(filename, "wt");
-    for (int i = 0; i < size; i++) {
-        fprintf(file, "%c ", list[i]->getKey()[0]);
-        list[i]->save(file);
-        fprintf(file, "\n");
-    }
+    if (file != NULL)
+        for (int i = 0; i < size; i++) {
+            fprintf(file, "%c ", list[i]->getKey()[0]);
+            list[i]->save(file);
+            fprintf(file, "\n");
+        }
     fclose(file);
 }
 
@@ -158,18 +159,19 @@ void List::load(char *filename)
     FILE *file;
     file = fopen(filename, "r");
     char key;
-    while (!feof(file)) {
-        fscanf(file, "%c ", &key);
-        switch (key) {
-            case '0':
-                //addToList((new Discipline())->load(file));
-                addToList(new Discipline());
-                break;
-            case '1':
-                //addToList((new Grade())->load(file));
-                addToList(new Grade());
-                break;
+    if (file != NULL)
+        while (!feof(file)) {
+            fscanf(file, "%c ", &key);
+            switch (key) {
+                case '0':
+                    //addToList((new Discipline())->load(file));
+                    addToList(new Discipline());
+                    break;
+                case '1':
+                    //addToList((new Grade())->load(file));
+                    addToList(new Grade());
+                    break;
+            }
+            list[size - 1]->load(file);
         }
-        list[size - 1]->load(file);
-    }
 }

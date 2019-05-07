@@ -1,0 +1,8 @@
+0 Math 32 2
+0 Lang 32 2
+0 OOP 32 2
+0 NET 32 2
+1 Math 32 2 Kolia 5
+1 Lang 32 2 Misha 10
+1 OOP 32 2 Sergey 10
+1 NET 32 2 Rick 7

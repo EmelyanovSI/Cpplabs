@@ -1,0 +1,8 @@
+1 Math 64 4 Kolia 2
+1 Lang 64 4 Misha 5
+1 OOP 64 4 Sergey 5
+1 NET 64 4 Rick 4
+0 Math 64 4
+0 Lang 64 4
+0 OOP 64 4
+0 NET 64 4

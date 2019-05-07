@@ -1,19 +1,17 @@
-#include <stdio.h>
-#include <string.h>
 #include "List.h"
 
 List::List()
 {
     size = 0;
-    maxSize = 2;
-    list = new Discipline *[maxSize];
+	maxSize = 2;
+	list = new Discipline *[maxSize];
 }
 
 List::~List()
 {
     for (int i = 0; i < size; i++)
-        delete list[i];
-    delete [] list;
+		delete list[i];
+	delete [] list;
 }
 
 List &List::operator += (Discipline *discipline)
@@ -68,16 +66,16 @@ Discipline *List::operator [] (char *name)
 void List::addToList(Discipline *discipline)
 {
     if (size == maxSize) {
-        maxSize *= 2;
-	Discipline **temp;
-	temp = new Discipline *[maxSize];
-	for (int i = 0; i < size; i++)
-	    temp[i] = list[i];
-	delete [] list;
-	list = temp;
-    }
-    list[size] = discipline;
-    size++;
+		maxSize *= 2;
+		Discipline **temp;
+		temp = new Discipline *[maxSize];
+		for (int i = 0; i < size; i++)
+			temp[i] = list[i];
+		delete [] list;
+		list = temp;
+	}
+	list[size] = discipline;
+	size++;
 }
 
 void List::removeFromList(int index)
@@ -102,14 +100,14 @@ void List::swap(int n, int m)
 {
     Discipline *temp;
     temp = list[n];
-    list[n] = list[m];
+	list[n] = list[m];
     list[m] = temp;
 }
 
 void List::sort()
 {
     for (int i = 0; i < size - 1; i++)
-        for (int j = i; j < size; j++)
+		for (int j = i; j < size; j++)
             if (strcmp(list[i]->getKey(), list[j]->getKey()) > 0)
                 swap(i, j);
 }
@@ -117,10 +115,10 @@ void List::sort()
 void List::show()
 {
     for (int i = 0; i < size; i++) {
-        printf("\nList[%d]:\n", i);
-	list[i]->output();
-	printf("\n");
-    }
+		cout << endl << "List[" << i << "]:" << endl;
+		list[i]->output();
+		cout << endl;
+	}
 }
 
 int List::find(char *name)
@@ -143,40 +141,34 @@ void List::output(int index)
 
 void List::save(char *filename)
 {
-    FILE *file;
-    file = fopen(filename, "wt");
-    if (file != NULL)
+    ofstream file;
+    file.open(filename);
+    if (file.is_open())
         for (int i = 0; i < size; i++) {
-            fprintf(file, "%c ", list[i]->getKey()[0]);
+            file << list[i]->getKey()[0] << " ";
             list[i]->save(file);
-            fprintf(file, "\n");
+            file << endl;
         }
-    fclose(file);
+    file.close();
 }
 
 void List::load(char *filename)
 {
-    FILE *file;
-    file = fopen(filename, "r");
+    ifstream file;
+    file.open(filename);
     char key;
-    Discipline *ptr;
-    if (file != NULL)
-        while (!feof(file)) {
-            fscanf(file, "%c ", &key);
+    if (file.is_open())
+        while (!file.eof()) {
+            file >> key;
             switch (key) {
-                case '0': {
-                    Discipline *d = new Discipline;
-                    d->load(file);
-                    ptr = d;
+                case '0':
+                    addToList(new Discipline());
                     break;
-                }
-                case '1': {
-                    Grade *g = new Grade;
-                    g->load(file);
-                    ptr = g;
+                case '1':
+                    addToList(new Grade());
                     break;
-                }
             }
-            addToList(ptr);
+            list[size - 1]->load(file);
         }
+    file.close();
 }
