@@ -36,7 +36,6 @@
 		<Unit filename="Discipline.h" />
 		<Unit filename="Grade.cpp" />
 		<Unit filename="Grade.h" />
-		<Unit filename="List.cpp" />
 		<Unit filename="List.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
