@@ -24,7 +24,7 @@ List &List::operator += (Discipline *discipline)
 
 List &List::operator += (Discipline &discipline)
 {
-    addToList(new Discipline(discipline));
+    addToList(discipline.copy());
     return *this;
 }
 
@@ -118,8 +118,8 @@ void List::show()
 {
     for (int i = 0; i < size; i++) {
         printf("\nList[%d]:\n", i);
-	list[i]->output();
-	printf("\n");
+		list[i]->output();
+		printf("\n");
     }
 }
 
@@ -145,12 +145,11 @@ void List::save(char *filename)
 {
     FILE *file;
     file = fopen(filename, "wt");
-    if (file != NULL)
-        for (int i = 0; i < size; i++) {
-            fprintf(file, "%c ", list[i]->getKey()[0]);
-            list[i]->save(file);
-            fprintf(file, "\n");
-        }
+    for (int i = 0; i < size; i++) {
+        fprintf(file, "%c ", list[i]->getKey()[0]);
+        list[i]->save(file);
+        fprintf(file, "\n");
+    }
     fclose(file);
 }
 
@@ -165,15 +164,13 @@ void List::load(char *filename)
             fscanf(file, "%c ", &key);
             switch (key) {
                 case '0': {
-                    Discipline *d = new Discipline;
-                    d->load(file);
-                    ptr = d;
+                    ptr = new Discipline;
+                    ptr->load(file);
                     break;
                 }
                 case '1': {
-                    Grade *g = new Grade;
-                    g->load(file);
-                    ptr = g;
+                    ptr = new Grade;
+                    ((Grade*)ptr)->load(file);
                     break;
                 }
             }

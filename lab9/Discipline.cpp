@@ -113,15 +113,22 @@ void Discipline::load(ifstream &file)
     file >> name >> hours >> course;
 }
 
+Discipline *Discipline::copy()
+{
+    return new Discipline(*this);
+}
+
 istream &operator >> (istream &in, Discipline &d)
 {
     cout << endl << "obj data input:" << endl;
 
     cout << "Name?: ";
     in >> ws;
-    in.getline(d.name, STR_LEN);
-    in.clear();
-    fflush(stdin);
+    in.get(d.name, STR_LEN);
+    if (in.get() != '\n') {
+        in.clear();
+        in.ignore(INT_MAX, '\n');
+    }
 
     cout << "Hours?: ";
     in >> ws >> d.hours;

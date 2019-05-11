@@ -24,17 +24,12 @@ int main()
     List staticList;
 
     staticList.load("staticList.txt");
+    staticList.save("staticList.txt");
     staticList.show();
     getch();
 
-    staticList.sort();
-    staticList.show();
-    getch();
-
-    staticList.save("staticListSort.txt");
-
-    staticList.load("staticList.txt");
-    staticList.show();
+    staticList.input(0);
+    staticList.output(0);
     getch();
 
     //dynamic
@@ -43,17 +38,12 @@ int main()
     dynamicList = new List();
 
     dynamicList->load("dynamicList.txt");
+    dynamicList->save("dynamicList.txt");
     dynamicList->show();
     getch();
 
-    dynamicList->sort();
-    dynamicList->show();
-    getch();
-
-    dynamicList->save("dynamicListSort.txt");
-
-    dynamicList->load("dynamicList.txt");
-    dynamicList->show();
+    dynamicList->input(0);
+    dynamicList->output(0);
     getch();
 
     delete dynamicList;

@@ -68,3 +68,8 @@ void Grade::load(FILE *file)
     Discipline::load(file);
     fscanf(file, "%s %d ", student, &value);
 }
+
+Grade *Grade::copy()
+{
+    return new Grade(*this);
+}

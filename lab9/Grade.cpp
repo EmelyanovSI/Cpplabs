@@ -34,13 +34,11 @@ int Grade::getValue()
 
 void Grade::input()
 {
-    Discipline::input();
     cin >> *this;
 }
 
 void Grade::output()
 {
-    Discipline::output();
     cout << *this;
 }
 
@@ -62,21 +60,32 @@ void Grade::load(ifstream &file)
     file >> student >> value;
 }
 
+Grade *Grade::copy()
+{
+    return new Grade(*this);
+}
+
 istream &operator >> (istream &in, Grade &g)
 {
+    in >> (Discipline&)g;
+
     cout << "Student?: ";
     in >> ws;
-    in.getline(g.student, STR_LEN);
-    in.clear();
-    fflush(stdin);
+    in.get(g.student, STR_LEN);
+    if (in.get() != '\n') {
+        in.clear();
+        in.ignore(INT_MAX, '\n');
+    }
 
     cout << "Value?: ";
-    in >> g.value;
+    in >> ws >> g.value;
     return in;
 }
 
 ostream &operator << (ostream &out, Grade &g)
 {
+    out << (Discipline&)g;
+
     out << "Student:" << right << setw(STR_LEN) << g.student << endl;
     out << "Value:  " << right << setw(STR_LEN) << g.value << endl;
     return out;

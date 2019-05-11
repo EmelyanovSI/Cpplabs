@@ -29,11 +29,19 @@ int main()
 {
     //static
 
-    Discipline *d = new Grade("one", 2, 3, "four", 5);
-    d->output();
+    Discipline *disc = new Grade("one", 2, 3, "four", 5);
+    disc->output();
     getch();
+    delete disc;
 
     List staticList;
+
+    Discipline d("six", 7, 8);
+    Grade g("one", 2, 3, "four", 5);
+    staticList += d;
+    staticList += g;
+    staticList.show();
+    getch();
 
     staticList.load("staticList.txt");
     staticList.show();

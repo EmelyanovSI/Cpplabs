@@ -124,3 +124,8 @@ void Discipline::load(FILE *file)
 {
     fscanf(file, "%s %d %d ", name, &hours, &course);
 }
+
+Discipline *Discipline::copy()
+{
+    return new Discipline(*this);
+}

@@ -11,6 +11,9 @@
 
 int main()
 {
+    Discipline d("ten", 11, 12);
+    Grade g("ten", 11, 12, "zero", 0);
+
     //static
 
     List<Discipline> staticDiscipline;
@@ -40,8 +43,8 @@ int main()
     staticDiscipline.input(0);
     staticDiscipline.output(0);
     getch();
-    staticDiscipline.save("staticDisciplineSave.txt");
-    staticDiscipline.load("staticDisciplineLoad.txt");
+    staticDiscipline.save("staticDiscipline.txt");
+    staticDiscipline.load("staticDiscipline.txt");
     staticDiscipline.show();
     getch();
     staticDiscipline += staticDiscipline;
@@ -50,7 +53,7 @@ int main()
     staticDiscipline += new Discipline("one", 2, 3);
     staticDiscipline.show();
     getch();
-    staticDiscipline += *(new Discipline("ten", 11, 12)); //ошибка и в 6й лабе тоже
+    staticDiscipline += d;
     staticDiscipline.show();
     getch();
     staticDiscipline -= "one";
@@ -88,8 +91,8 @@ int main()
     staticGrade.input(0);
     staticGrade.output(0);
     getch();
-    staticGrade.save("staticGradeSave.txt");
-    staticGrade.load("staticGradeLoad.txt");
+    staticGrade.save("staticGrade.txt");
+    staticGrade.load("staticGrade.txt");
     staticGrade.show();
     getch();
     staticGrade += staticGrade;
@@ -98,7 +101,7 @@ int main()
     staticGrade += new Grade("one", 2, 3, "zero", 0);
     staticGrade.show();
     getch();
-    staticGrade += *(new Grade("ten", 11, 12, "zero", 0)); //ошибка и в 6й лабе тоже
+    staticGrade += g;
     staticGrade.show();
     getch();
     staticGrade -= "one";

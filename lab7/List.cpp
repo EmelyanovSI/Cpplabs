@@ -145,12 +145,11 @@ void List::save(char *filename)
 {
     FILE *file;
     file = fopen(filename, "wt");
-    if (file != NULL)
-        for (int i = 0; i < size; i++) {
-            fprintf(file, "%c ", list[i]->getKey()[0]);
-            list[i]->save(file);
-            fprintf(file, "\n");
-        }
+    for (int i = 0; i < size; i++) {
+        fprintf(file, "%c ", list[i]->getKey()[0]);
+        list[i]->save(file);
+        fprintf(file, "\n");
+    }
     fclose(file);
 }
 

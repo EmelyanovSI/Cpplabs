@@ -27,6 +27,7 @@ class Discipline
         virtual void save(FILE *file);
         void load(FILE *file);
 
+        virtual Discipline *copy();
     protected:
         char keyWord[STR_LEN*2];
 

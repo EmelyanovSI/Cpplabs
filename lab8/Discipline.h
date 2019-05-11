@@ -34,6 +34,7 @@ class Discipline
         virtual void output();
         virtual void save(ofstream &file);
         virtual void load(ifstream &file);
+        virtual Discipline *copy();
 
         friend ostream &operator << (ostream &out, Discipline &d);
         friend istream &operator >> (istream &in, Discipline &d);

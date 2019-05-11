@@ -34,7 +34,7 @@ int main()
     staticList.addToList(new Discipline("NET", 32, 2));
 
     staticList += new Discipline("Math", 32, 2);
-    staticList += *(new Discipline("Lang", 32, 2));
+    staticList += obj1;
     staticList -= 0;
     staticList -= "OOP";
     staticList.show();
@@ -62,7 +62,7 @@ int main()
     dynamicList->addToList(new Discipline("NET", 64, 4));
 
     *dynamicList += (new Discipline("Math", 64, 4));
-    *dynamicList += *(new Discipline("Lang", 64, 4));
+    *dynamicList += obj2;
     *dynamicList -= 0;
     *dynamicList -= "OOP";
     dynamicList->show();

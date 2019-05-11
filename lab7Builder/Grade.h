@@ -20,6 +20,7 @@ class Grade: public Discipline
         void save(FILE *file);
         void load(FILE *file);
 
+        virtual Grade *copy();
     protected:
 
     private:

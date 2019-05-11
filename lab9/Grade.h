@@ -19,6 +19,7 @@ class Grade: public Discipline
         void output();
         void save(ofstream &file);
         void load(ifstream &file);
+        Grade *copy();
 
         friend ostream &operator << (ostream &out, Grade &g);
         friend istream &operator >> (istream &in, Grade &g);
