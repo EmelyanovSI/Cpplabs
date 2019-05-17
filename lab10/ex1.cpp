@@ -20,7 +20,6 @@ int main()
 {
     const int STR_LEN = 64;
     string *str = new string[STR_LEN];
-    string sentence = "";
     int len, n = 0;
 
     ifstream file;
@@ -31,21 +30,21 @@ int main()
     file.close();
     len = n;
 
-    cout << "All words:" << endl;
+    cout << endl << "All words:" << endl;
     for (int i = 0; i < len; i++)
         cout << str[i] << endl;
 
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = i + 1; j < len; j++) {
-            if (str[i].length() > str[j].length()) {
-                string buf = str[i];
-                str[i] = str[j];
-                str[j] = buf;
-            }
-        }
-    }
+    for (int i = 0; i < len - 1; i++)
+        for (int j = i + 1; j < len; j++)
+            if (str[i].compare(str[j]) > 0)
+                str[i].swap(str[j]);
 
-    cout << "All words after sorting:" << endl;
+    for (int i = 0; i < len - 1; i++)
+        for (int j = i + 1; j < len; j++)
+            if (str[i].length() > str[j].length())
+                str[i].swap(str[j]);
+
+    cout << endl << "All words after sorting:" << endl;
     for (int i = 0; i < len; i++)
         cout << str[i] << endl;
 
