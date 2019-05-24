@@ -104,9 +104,10 @@ class List
         void input(int index) {
             list[index]->input();
         }
-        void output(int index) {
-            list[index]->output();
-        }
+
+        //method
+        void output(int index);
+
         void save(char *filename) {
             ofstream file;
             file.open(filename);
@@ -142,3 +143,8 @@ class List
 };
 
 #endif // LIST_H
+
+template<typename Type>
+void List<Type>::output(int index) {
+    list[index]->output();
+}
