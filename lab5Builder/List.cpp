@@ -28,12 +28,12 @@ void List::addToList(Discipline *discipline)
 {
     if (size == maxSize) {
         maxSize *= 2;
-	Discipline **temp;
-	temp = new Discipline *[maxSize];
-	for (int i = 0; i < size; i++)
-	    temp[i] = list[i];
-	delete [] list;
-	list = temp;
+		Discipline **temp;
+		temp = new Discipline *[maxSize];
+		for (int i = 0; i < size; i++)
+			temp[i] = list[i];
+		delete [] list;
+		list = temp;
     }
     list[size] = discipline;
     size++;
@@ -69,15 +69,15 @@ void List::sort()
 {
     for (int i = 0; i < size - 1; i++)
         for (int j = i; j < size; j++)
-	    if (strcmp(list[i]->getName(), list[j]->getName()) < 0)
-	    	swap(i, j);
+			if (strcmp(list[i]->getName(), list[j]->getName()) < 0)
+				swap(i, j);
 }
 
 void List::show()
 {
     for (int i = 0; i < size; i++) {
     	printf("\nList[%d]:\n", i);
-	list[i]->output();
-	printf("\n");
+		list[i]->output();
+		printf("\n");
     }
 }
