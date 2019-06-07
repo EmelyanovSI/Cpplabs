@@ -62,26 +62,29 @@ void Minus (int &el) {
     el = -el;
 }
 
-void Swap (int &el) { //error
-    if (el < 0 && n % 2 == 0 && fl == 0) {
-        vector<int> part1, part2;
-        part1.insert(part1.begin(), arr.begin(), arr.begin() + n);
-        part2.insert(part2.begin(), arr.begin() + n + 1, arr.end());
-        buf = el;
-        arr.insert(arr.begin(), part2.begin(), part2.end());
-        arr.insert(arr.begin() + part2.size(), buf);
-        arr.insert(arr.begin() + part2.size() + 1, part1.begin(), part1.end());
-        arr.erase(arr.end() - arr.size() / 2, arr.end());
-        fl = 1;
+void Swap (int &el) {
+    if (el < 0 && fl == 0) {
+        if (n % 2 == 0) {
+            vector<int> part1, part2;
+            int len = arr.size();
+            part1.insert(part1.begin(), arr.begin(), arr.begin() + n);
+            part2.insert(part2.begin(), arr.begin() + n + 1, arr.end());
+            buf = el;
+            arr.insert(arr.begin(), part2.begin(), part2.end());
+            arr.insert(arr.begin() + part2.size(), buf);
+            arr.insert(arr.begin() + part2.size() + 1, part1.begin(), part1.end());
+            arr.erase(arr.begin() + len, arr.end());
+            fl = 1;
+        }
+        else
+            fl = 1;
     }
-    else
-        fl = 1;
     n++;
 }
 
-void Delete (int &el) { //error
+void Delete (int &el) {
     if (el == 0)
-        arr.erase(arr.begin());
+        arr.erase(arr.begin() + n);
     n++;
 }
 
