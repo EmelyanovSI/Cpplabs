@@ -1,6 +1,10 @@
 #ifndef DISCIPLINE_H
 #define DISCIPLINE_H
 
+#include <iostream>
+
+using namespace std;
+
 const int STR_LEN = 64;
 
 class Discipline
@@ -11,6 +15,10 @@ class Discipline
         Discipline(Discipline &d);
         Discipline(char *n);
         Discipline(char *n, Discipline *y, Discipline x);
+
+        ~Discipline() {
+            cout << endl << "message" << endl;
+        }
 
         char *getName();
         void setName(char *n);

@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
+#include <algorithm>
 #include "List.h"
 
-List::List()
-{
-
-}
+List::List() { }
 
 List::~List()
 {
+    for (list<Discipline*>::iterator i = collection.begin(); i != collection.end(); i++)
+        delete *i;
     collection.clear();
 }
 
@@ -29,6 +29,7 @@ void List::removeFromList(int index)
 {
     list<Discipline*>::iterator iter = collection.begin();
     advance(iter, index);
+    delete *iter;
     collection.erase(iter);
 }
 
@@ -46,32 +47,15 @@ list<Discipline*>::iterator List::getObject(int index)
 
 void List::swap(int n, int m)
 {
-    /*list<Discipline*>::iterator iter1 = collection.begin();
+    list<Discipline*>::iterator iter1 = collection.begin();
     advance(iter1, n);
     list<Discipline*>::iterator iter2 = collection.begin();
-    advance(iter2, m);*/
-
-    char name[STR_LEN];
-    int hours;
-    int course;
-
-    strcpy(name, (*getObject(n))->getName());
-    hours = (*getObject(n))->getHours();
-    course = (*getObject(n))->getCourse();
-
-    (*getObject(n))->setName((*getObject(m))->getName());
-    (*getObject(n))->setHours((*getObject(m))->getHours());
-    (*getObject(n))->setCourse((*getObject(m))->getCourse());
-
-    (*getObject(m))->setName(name);
-    (*getObject(m))->setHours(hours);
-    (*getObject(m))->setCourse(course);
+    advance(iter2, m);
+    iter_swap(iter1, iter2);
 }
 
 void List::sort()
 {
-    //collection.sort();
-
     for (int i = 0; i < collection.size() - 1; i++)
         for (int j = i; j < collection.size(); j++)
 			if (strcmp((*getObject(i))->getName(), (*getObject(j))->getName()) < 0)
